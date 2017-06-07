@@ -1,0 +1,10 @@
+Comparators 	- 	X
+Herencia	-	X
+Buffer		-	X
+IndexOf		-	
+Excepciones	-	
+Editar		-	
+Borrar		-	
+Readme.md	-	
+Comentarios	-	
+
