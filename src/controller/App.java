@@ -19,7 +19,7 @@ public class App {
 
     public void startApp() {
         int option;
-        readFile();
+        loadAccs();
         showHeader();
         while ((option = showMenu()) != 0) {
             switch (option) {
@@ -36,29 +36,36 @@ public class App {
                     bank.makeWithdraw();
                     break;
                 case 5:
-                    break;
-                case 6:
                     bank.movementList();
                     break;
-                case 7:
+                case 6:
                     bank.sortByName();
                     break;
-                case 8:
+                case 7:
                     bank.sortByAccNumber();
                     break;
-                case 9:
+                case 8:
                     bank.sortByBalance();
                     break;
-                case 10:
+                case 9:
                     bank.showCustomers();
                     break;
-                case 11:
+                case 10:
                     saveFile();
                     readFile();
                     break;
             }
 
         }
+    }
+
+    public void loadAccs(){
+
+
+        bank.addCostumer(new Customer("Ana","Mier Dec illa",new Checking(300)));
+        bank.addCostumer(new Customer("Aitor","Tilla",new Checking(400)));
+        bank.addCostumer(new Customer("Jose Luis","Lamata Feliz",new Savings(150)));
+
     }
 
 
@@ -79,12 +86,11 @@ public class App {
         System.out.println("3) Make a deposit.");
         System.out.println("4) Withdraw.");
         System.out.println("5) Print short account information");
-        System.out.println("6) Print the detailed account information including last transactions");
-        System.out.println("7) Sort customers by name");
-        System.out.println("8) Sort customers by Account number");
-        System.out.println("9) Sort customers by balance");
-        System.out.println("10) Show all the customers");
-        System.out.println("11) Save all changes");
+        System.out.println("6) Sort customers by name");
+        System.out.println("7) Sort customers by Account number");
+        System.out.println("8) Sort customers by balance");
+        System.out.println("9) Show all the customers");
+        System.out.println("10) Save all changes");
         System.out.println("0) Quit");
 
         Scanner sc = new Scanner(System.in);

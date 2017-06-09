@@ -2,12 +2,14 @@ package model;
 
 import java.io.Serializable;
 import java.util.Comparator;
+import java.util.Objects;
 
 /**
  * Created by takk on 05/06/2017.
  */
 public class Customer implements Comparable<Customer>,Comparator<Customer>, Serializable{
 
+    private static final long serialVersionUID = 5144261382049047231L;
     private String  firstName;
     private String  lastName;
     private Account account;
@@ -58,7 +60,7 @@ public class Customer implements Comparable<Customer>,Comparator<Customer>, Seri
     @Override
     public String toString() {
 
-        return "First Name: " + firstName + "\n" +
+        return  "First Name: " + firstName + "\n" +
                 "Last Name: " + lastName + "\n" +
                 account;
     }
@@ -67,7 +69,8 @@ public class Customer implements Comparable<Customer>,Comparator<Customer>, Seri
 
         return  "Account Number: " + account.getAccNumber() + " | " +
                 "First Name: " + firstName + " | " +
-                "Last Name: " + lastName;
+                "Last Name: " + lastName + " | " +
+                "Balance: " + account.getBalance();
 
     }
 
@@ -99,4 +102,7 @@ public class Customer implements Comparable<Customer>,Comparator<Customer>, Seri
             return (int) (customer1.getAccount().getBalance() - customer2.getAccount().getBalance());
         }
         };
+
+
     }
+

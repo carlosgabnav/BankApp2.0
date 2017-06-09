@@ -12,6 +12,7 @@ import java.util.*;
  */
 public class Bank implements Serializable {
 
+    private static final long serialVersionUID = -522684836898141431L;
     public List<Customer> customers = new ArrayList<>();
 
     // Accesores
@@ -83,7 +84,7 @@ public class Bank implements Serializable {
         int acc = chooseAccount();
 
         if (acc >= 0) {
-            System.out.println(getCustomer(acc).getAccount());
+            System.out.println(getCustomer(acc));
         } else {
             System.out.println("That account doesnt exists");
         }
@@ -95,29 +96,36 @@ public class Bank implements Serializable {
      */
     private int chooseAccount() {
         Scanner sc = new Scanner(System.in);
-        int acc;
+        int index = 0;
+        int acc = 0;
         if (customers.isEmpty()) {
             System.out.println("No customer at the bank.");
             acc = -1;
         } else {
             System.out.println("Accounts: ");
-            int i = 0;
             for (Customer custo : customers) {
-                System.out.println((i + 1) + "-" + customers.get(i).accInfo());
-                i++;
+                System.out.println(custo.accInfo());
             }
             try {
                 System.out.println("Select an account: ");
-                acc = sc.nextInt() - 1;
-                if (acc < 0 || acc > customers.size()) {
+                index = sc.nextInt() ;
+                if (index < 0 || index > customers.size()) {
                     acc = -1;
+                    System.out.println("Invalid account number.");
                 } else {
-                    customers.indexOf(acc);
+                    for (Customer customer: customers) {
+                        if(customer.getAccount().getAccNumber() == index){
 
+                            acc = customers.indexOf(customer);
+                        }
+
+
+                    }
+                    //acc = customers.get(customers.indexOf(index)).getAccount().getAccNumber() ;
                 }
             } catch (InputMismatchException e) {
                 acc = -1;
-                System.out.println("Invalid account.");
+                System.out.println("Invalid account number");
             }
         }
         return acc;
@@ -170,12 +178,16 @@ public class Bank implements Serializable {
 
     public void newAccount() {
         Scanner sc = new Scanner(System.in);
-        sc.nextLine();
         String firstName, lastName, accType;
         double initialDeposit = 0;
 
         boolean validType = false;
         while (!validType) {
+
+            /**
+             *  Asegura que la cuenta es "savings" o "checking"
+             */
+            validType = false;
             do {
                 System.out.println("Please enter an account type (checking/savings): ");
                 accType = sc.nextLine();
@@ -185,12 +197,26 @@ public class Bank implements Serializable {
                     System.out.println("Invalid account type, please enter \"checking\" or \"savings\"");
                 }
 
-            } while (!validType);
+            } while (! validType);
 
-            System.out.println("Enter your first name: ");
-            firstName = sc.nextLine();
-            System.out.println("Great! Enter your last name: ");
-            lastName = sc.nextLine();
+
+            do{
+                System.out.println("Enter your first name: ");
+                firstName = sc.nextLine().trim().replaceAll("\\s+", " ");
+            }while (firstName.equals(""));
+
+
+            do{
+                System.out.println("Great! Enter your last names: ");
+                lastName = sc.nextLine().trim().replaceAll("\\s+", " ");
+
+            }while (lastName.equals(""));
+
+
+            /**
+             *  Aseguramos que la cantidad introducida es un numero
+             *  y que cumple los requisitos para cada cuenta
+             */
             validType = false;
             while (!validType) {
                 System.out.println("Please enter an inital deposit: ");
@@ -217,7 +243,9 @@ public class Bank implements Serializable {
                 }
             }
 
-            // Tenemos todos los datos y podemos crear una cuenta.
+            /**
+             *  Tenemos todos los datos y podemos crear una cuenta.
+             */
 
             Account account;
             if (accType.equalsIgnoreCase("checking")) {
