@@ -1,24 +1,22 @@
 package model;
 
 import java.io.Serializable;
-import java.util.Objects;
 
-/**
- * Created by takk on 05/06/2017.
- */
 public class Account implements Serializable {
 
     private static final long serialVersionUID = 3476980086996915495L;
     private double      balance = 0;
     private double      interest = 0.01;
     private int         accNumber;
-    private static int  numberOfAccs = 1;
+    private static int  numberOfAccs = recoverIndex();
+
 
 
     //  Constructores
 
     public Account(){
-        accNumber = numberOfAccs++;
+        accNumber =  numberOfAccs;
+        numberOfAccs++;
     }
 
     public Account(double balance,
@@ -110,18 +108,10 @@ public class Account implements Serializable {
         }
     }
 
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (obj == null || getClass() != obj.getClass()) return false;
+    public static int recoverIndex(){
+        Bank bank = new Bank();
 
-        Account account = (Account) obj;
-
-        // Se consideran dos cuentas iguales
-        // cuando tienen el mismo numero de cuenta.
-        return Objects.equals(account.getAccNumber(), account.getAccNumber());
+            return  bank.customers.size() + 1;
 
     }
-
-
 }

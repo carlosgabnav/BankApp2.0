@@ -4,6 +4,8 @@ public class Savings extends Account {
 
     private static String accType = "Savings";
 
+    //  Constructores
+
     public Savings(double initialDeposit){
 
         super();
@@ -12,6 +14,7 @@ public class Savings extends Account {
     }
 
 
+    //  Metodos
     @Override
     public String toString() {
         return  "Account Type: "    + accType + " Account\n" +

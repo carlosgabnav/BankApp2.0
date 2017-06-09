@@ -5,9 +5,6 @@ import model.*;
 import java.io.*;
 import java.util.*;
 
-/**
- * Created by takk on 05/06/2017.
- */
 public class App {
 
     private Bank bank;
@@ -17,9 +14,13 @@ public class App {
         this.bank = new Bank();
     }
 
+    /**
+     * Inicia la App y muestra el menu.
+     */
     public void startApp() {
         int option;
-        loadAccs();
+        //loadAccs();
+        readFile();
         showHeader();
         while ((option = showMenu()) != 0) {
             switch (option) {
@@ -57,30 +58,46 @@ public class App {
             }
 
         }
-    }
-
-    public void loadAccs(){
-
-
-        bank.addCostumer(new Customer("Ana","Mier Dec illa",new Checking(300)));
-        bank.addCostumer(new Customer("Aitor","Tilla",new Checking(400)));
-        bank.addCostumer(new Customer("Jose Luis","Lamata Feliz",new Savings(150)));
 
     }
 
+    /**
+     *  Carga cuentas por defecto
+     */
+//    public void loadAccs(){
+//
+//
+//        bank.addCostumer(new Customer("Ana","Mier Dec illa",new Checking(300)));
+//        bank.addCostumer(new Customer("Aitor","Tilla",new Checking(400)));
+//        bank.addCostumer(new Customer("Jose Luis","Lamata Feliz",new Savings(150)));
+//
+//    }
+
+    /**
+     *  Imprime la cabecera del menu,
+     */
 
     public void showHeader() {
 
-        System.out.println("+------------------------------+");
-        System.out.println("       Welcome to the Bank      ");
-        System.out.println("                                ");
-        System.out.println("                                ");
-        System.out.println("+------------------------------+");
+        System.out.println(" __     __     ____                 _    ");
+        System.out.println(" \\ \\   / /    |  _ \\               | |   ");
+        System.out.println("  \\ \\_/ /___  | |_) |  __ _  _ __  | | __");
+        System.out.println("   \\   // _ \\ |  _ <  / _` || '_ \\ | |/ /");
+        System.out.println("    | || (_) || |_) || (_| || | | ||   < ");
+        System.out.println("    |_| \\___/ |____/  \\__,_||_| |_||_|\\_\\");
+        System.out.println("_____________________________________________");
+        System.out.println();
+
 
     }
 
-    public int showMenu() {
+    /**
+     *  Imprime el menu y devuelve la opcion elegida.
+     * @return int
+     */
 
+    public int showMenu() {
+        System.out.println();
         System.out.println("1) Open a new bank account.");
         System.out.println("2) Close a bank account.");
         System.out.println("3) Make a deposit.");
@@ -92,11 +109,12 @@ public class App {
         System.out.println("9) Show all the customers");
         System.out.println("10) Save all changes");
         System.out.println("0) Quit");
+        System.out.println();
 
         Scanner sc = new Scanner(System.in);
         int option = -1;
         try {
-            System.out.println("Option: ");
+            System.out.print("Option: ");
             option = sc.nextInt();
         } catch (InputMismatchException e) {
             System.out.println("Sorry, We don't recognize your input.");
@@ -105,6 +123,11 @@ public class App {
 
     }
 
+    /**
+     *
+     *  Leer un archivo binario y lo muestra
+     */
+
     public void readFile() {
 
         try {
@@ -112,9 +135,7 @@ public class App {
 
             bank.customers = (List<Customer>) flujoLectura.readObject();
             flujoLectura.close();
-            for (Customer customer : bank.customers) {
-                System.out.println(customer);
-            }
+
 
         } catch (IOException e) {
 
@@ -126,6 +147,9 @@ public class App {
 
     }
 
+    /**
+     *  Guarda un archivo binario con el nombre "banco.dat"
+     */
     public void saveFile() {
         try {
             ObjectOutputStream flujoSalida = new ObjectOutputStream(new FileOutputStream("banco.dat"));

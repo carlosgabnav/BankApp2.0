@@ -1,15 +1,9 @@
 package model;
 
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.*;
 
 
-/**
- * Created by takk on 05/06/2017.
- */
 public class Bank implements Serializable {
 
     private static final long serialVersionUID = -522684836898141431L;
@@ -109,7 +103,7 @@ public class Bank implements Serializable {
             try {
                 System.out.println("Select an account: ");
                 index = sc.nextInt() ;
-                if (index < 0 || index > customers.size()) {
+                if (index <= 0 || index > customers.size()) {
                     acc = -1;
                     System.out.println("Invalid account number.");
                 } else {
@@ -145,10 +139,11 @@ public class Bank implements Serializable {
             try {
                 System.out.println("How much do u like to withdraw?: ");
                 amount = sc.nextDouble();
+                getCustomer(acc).getAccount().withdraw(amount);
             } catch (InputMismatchException e) {
-                System.out.println("Sorry enter another amount ");
+                System.out.println("Please, enter a valid amount");
             }
-            getCustomer(acc).getAccount().withdraw(amount);
+
         }
     }
 
@@ -168,11 +163,12 @@ public class Bank implements Serializable {
                 amount = sc.nextDouble();
                 if (amount < 0) {
                     amount = 0;
+                }else {
+                    getCustomer(acc).getAccount().deposit(amount);
                 }
             } catch (InputMismatchException e) {
-                System.out.println("Sorry enter another amount ");
+                System.out.println("Please, enter a valid amount");
             }
-            getCustomer(acc).getAccount().deposit(amount);
         }
     }
 
@@ -284,5 +280,7 @@ public class Bank implements Serializable {
     public void sortByBalance() {
         Collections.sort(customers, Customer.compareByBalance);
     }
+
+
 
 }

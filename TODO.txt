@@ -2,11 +2,11 @@ Comparators 	- 	X
 Herencia	    -	X
 Buffer		    -	X
 IndexOf		    -	X
-Excepciones	    -
-Editar		    -
+Excepciones	    -   X
+Editar		    -   X
 Borrar		    -	X
 Readme.md	    -
-Comentarios	    -
+Comentarios	    -   X
 GetAccNumer in constructor para cada vez que cree una cuenta busque el indice de la ultima.
 
 

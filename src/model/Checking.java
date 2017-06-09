@@ -5,6 +5,8 @@ public class Checking extends Account {
 
     private static String accType = "Checking";
 
+    //  Constructores
+
     public Checking(double initialDeposit){
 
         super();
@@ -12,6 +14,7 @@ public class Checking extends Account {
         this.checkInterest();
     }
 
+    //  Metodos
 
     @Override
     public String toString() {

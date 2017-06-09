@@ -2,11 +2,7 @@ package model;
 
 import java.io.Serializable;
 import java.util.Comparator;
-import java.util.Objects;
 
-/**
- * Created by takk on 05/06/2017.
- */
 public class Customer implements Comparable<Customer>,Comparator<Customer>, Serializable{
 
     private static final long serialVersionUID = 5144261382049047231L;
