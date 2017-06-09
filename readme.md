@@ -1,4 +1,4 @@
-# YoBank App :moneybag: :moneybag:
+# YoBank App :moneybag: :bank:
 #### App simulación de un cajero 
 
 * Permite crear un nuevo cliente siempre y cuando introduzcas un nombre, 
