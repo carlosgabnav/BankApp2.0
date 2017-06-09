@@ -6,5 +6,8 @@ Excepciones	-
 Editar		-	
 Borrar		-	
 Readme.md	-	
-Comentarios	-	
+Comentarios	-
+GetAccNumer in constructor para cada vez que cree una cuenta busque el indice de la ultima.
+
+
 

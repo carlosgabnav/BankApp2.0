@@ -7,9 +7,9 @@ import java.io.Serializable;
  */
 public class Account implements Serializable {
 
-    private double  balance = 0;
-    private double  interest = 0.01;
-    private int     accNumber;
+    private double      balance = 0;
+    private double      interest = 0.01;
+    private int         accNumber;
     private static int  numberOfAccs = 1;
 
 
@@ -39,11 +39,11 @@ public class Account implements Serializable {
     }
 
     /**
-     * Multiplicamos el interes por 100 para que salga el tanto por ciento
-     * @return
+     *  Multiplicamos el interes por 100 para que salga el tanto por ciento
+     *  @return
      */
     public double getInterest() {
-        return interest * 100;
+        return this.interest * 100;
     }
 
     public void setInterest(double interest) {
@@ -60,17 +60,30 @@ public class Account implements Serializable {
 
     //  Metodos
 
+    /**
+     *  Metodo con el que "sacamos dinero"
+     *  restamos una cantidad introducida como parametro a balance
+     *  @param amount
+     */
+
     public void withdraw(double amount){
 
         if(amount > balance){
             System.out.println("You have insufficient funds.");
             return;
         }
+        checkInterest();
         balance = balance - amount;
         System.out.println("You have withdrawn " + amount + "€");
         System.out.println("Your is balance is: " + balance + "€");
 
     }
+
+    /**
+     *  Metodo con el que "ingresamos"
+     *  sumamos una cantidad introducida como parametro a balance
+     *  @param amount
+     */
     public void deposit(double amount){
 
         if (amount <= 0 ){
@@ -85,6 +98,11 @@ public class Account implements Serializable {
         System.out.println("Your is balance is: " + balance + "€");
 
     }
+
+    /**
+     *  Comprueba el balance, si es superior a 1000
+     *  setea los intereses a un valor determinado
+     */
 
     public void checkInterest(){
 

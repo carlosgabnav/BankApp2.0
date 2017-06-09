@@ -65,10 +65,12 @@ public class Customer implements Comparable<Customer>,Comparator<Customer>, Seri
 
     public String accInfo() {
 
-        return "First Name: " + firstName + " " +
-                "Last Name: " + lastName + " " +
-                "Account Number: " + account.getAccNumber();
+        return  "Account Number: " + account.getAccNumber() + " | " +
+                "First Name: " + firstName + " | " +
+                "Last Name: " + lastName;
+
     }
+
 
     public Account getAccount() {
 

@@ -16,21 +16,47 @@ public class Bank implements Serializable {
 
     // Accesores
 
+    /**
+     * Añade un Customer
+     * @param customer
+     */
+
     public void addCostumer(Customer customer) {
 
         customers.add(customer);
     }
 
-    public void deleteAccount() {
+    /**
+     * Este metodo llama a chooseAccount y le asigna el valor que devuelve a acc
+     * despues elimina la cuenta correspondiente al indice.
+     */
 
+    public void deleteAccount() {
         int acc = chooseAccount();
-        customers.remove(acc);
+
+        try{
+            customers.remove(acc);
+        }catch (IndexOutOfBoundsException e){
+            System.out.println("Invalid account.");
+        }
+
 
     }
+
+    /**
+     *  Devuelve una cuenta en un indice especifico.
+     *  @param account
+     *  @return
+     */
 
     public Customer getCustomer(int account) {
+
         return customers.get(account);
     }
+
+    /**
+     *  Muestra todos los clientes que hay en la lista.
+     */
 
     public void showCustomers() {
         for (Customer customer : customers) {
@@ -48,6 +74,11 @@ public class Bank implements Serializable {
     // Metodos
 
 
+    /**
+     *  Metodo que accede a chooseAccount,
+     *  elige una cuenta y devuelve la información sobre ella.
+     *
+     */
     public void movementList() {
         int acc = chooseAccount();
 
@@ -58,6 +89,10 @@ public class Bank implements Serializable {
         }
     }
 
+    /**
+     * Metodo que busca una cuenta en la lista y la devuelve
+     * @return acc
+     */
     private int chooseAccount() {
         Scanner sc = new Scanner(System.in);
         int acc;
@@ -73,7 +108,7 @@ public class Bank implements Serializable {
             }
             try {
                 System.out.println("Select an account: ");
-                acc = sc.nextInt();
+                acc = sc.nextInt() - 1;
                 if (acc < 0 || acc > customers.size()) {
                     acc = -1;
                 } else {
@@ -87,6 +122,11 @@ public class Bank implements Serializable {
         }
         return acc;
     }
+
+    /**
+     *  Metodo que accede a chooseAccount, elige una cuenta y pregunta que cantidad quieres sacar
+     *  con la cantidad accede al metodo withdraw de la clase Account y lo ejecuta.
+     */
 
     public void makeWithdraw() {
         Scanner sc = new Scanner(System.in);
@@ -103,6 +143,11 @@ public class Bank implements Serializable {
             getCustomer(acc).getAccount().withdraw(amount);
         }
     }
+
+    /**
+     *  Metodo que accede a chooseAccount, elige una cuenta y pregunta que cantidad quieres sacar
+     *  con la cantidad accede al metodo withdraw de la clase Account y lo ejecuta.
+     */
 
     public void makeDeposit() {
         Scanner sc = new Scanner(System.in);
