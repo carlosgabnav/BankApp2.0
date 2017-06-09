@@ -8,7 +8,6 @@ import java.util.*;
 public class App {
 
     private Bank bank;
-    private Customer customer;
 
     public App() {
         this.bank = new Bank();
@@ -98,17 +97,17 @@ public class App {
 
     public int showMenu() {
         System.out.println();
-        System.out.println("1) Open a new bank account.");
-        System.out.println("2) Close a bank account.");
-        System.out.println("3) Make a deposit.");
-        System.out.println("4) Withdraw.");
-        System.out.println("5) Print short account information");
-        System.out.println("6) Sort customers by name");
-        System.out.println("7) Sort customers by Account number");
-        System.out.println("8) Sort customers by balance");
-        System.out.println("9) Show all the customers");
-        System.out.println("10) Save all changes");
-        System.out.println("0) Quit");
+        System.out.println("1   -   Open a new bank account.");
+        System.out.println("2   -   Close a bank account.");
+        System.out.println("3   -   Make a deposit.");
+        System.out.println("4   -   Withdraw.");
+        System.out.println("5   -   Print short account information");
+        System.out.println("6   -   Sort customers by name");
+        System.out.println("7   -   Sort customers by Account number");
+        System.out.println("8   -   Sort customers by balance");
+        System.out.println("9   -   Show all the customers");
+        System.out.println("10  -   Save all changes");
+        System.out.println("0   -   Quit");
         System.out.println();
 
         Scanner sc = new Scanner(System.in);
@@ -131,7 +130,7 @@ public class App {
     public void readFile() {
 
         try {
-            ObjectInputStream flujoLectura = new ObjectInputStream(new FileInputStream("banco.dat"));
+            ObjectInputStream flujoLectura = new ObjectInputStream(new FileInputStream("Datos/banco.dat"));
 
             bank.customers = (List<Customer>) flujoLectura.readObject();
             flujoLectura.close();
@@ -152,7 +151,7 @@ public class App {
      */
     public void saveFile() {
         try {
-            ObjectOutputStream flujoSalida = new ObjectOutputStream(new FileOutputStream("banco.dat"));
+            ObjectOutputStream flujoSalida = new ObjectOutputStream(new FileOutputStream("Datos/banco.dat"));
             flujoSalida.writeObject(bank.customers);
         } catch (IOException e) {
             e.printStackTrace();
